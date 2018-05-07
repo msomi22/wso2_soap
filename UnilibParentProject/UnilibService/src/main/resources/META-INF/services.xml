@@ -1,0 +1,96 @@
+<serviceGroup name="UnilibService">
+
+	<service name="BookService">
+		<description>
+			RESTful University Library Book service that receives and
+			responds with
+			JSON/XML
+		</description>
+		<transports>
+			<transport>https</transport> 
+		</transports>
+		<messageReceivers>
+			<messageReceiver class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" mep="http://www.w3.org/2004/08/wsdl/in-only"/>
+			<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" mep="http://www.w3.org/2004/08/wsdl/in-out"/>
+		</messageReceivers>
+		<parameter locked="false" name="ServiceClass">au.edu.marrowa.unilib.service.BookService</parameter>
+		
+		<!--  
+		<parameter name="disableSOAP11">true</parameter>
+		<parameter name="disableSOAP12">true</parameter>
+		-->
+		
+		<operation name="addBook">
+			<parameter name="RESTMethod">POST</parameter>
+			<parameter name="RESTLocation">book/</parameter>   
+		</operation>
+		
+		<operation name="updateBook">
+			<parameter name="RESTMethod">PUT</parameter>
+			<parameter name="RESTLocation">book</parameter> 
+		</operation>
+		
+		<operation name="getBookByISBN">
+			<parameter name="RESTMethod">GET</parameter>
+			<parameter name="RESTLocation">book/{isbn}</parameter>
+		</operation>
+		
+		<operation name="getBooks">
+			<parameter name="RESTMethod">GET</parameter>
+			<parameter name="RESTLocation">book</parameter> 
+		</operation>
+		
+		<operation name="deleteBook">
+			<parameter name="RESTMethod">DELETE</parameter>
+			<parameter name="RESTLocation">book/{isbn}</parameter>
+		</operation>
+		
+		
+		
+		<!-- student -->
+		
+		
+		<operation name="addStudent">
+			<parameter name="RESTMethod">POST</parameter>
+			<parameter name="RESTLocation">student</parameter>
+		</operation>
+	
+		
+		<operation name="getStudent">
+			<parameter name="RESTMethod">GET</parameter>
+			<parameter name="RESTLocation">student/{studentId}</parameter>
+		</operation>
+		
+		<operation name="getBookList">
+			<parameter name="RESTMethod">GET</parameter>
+			<parameter name="RESTLocation">student/{studentId}/{category}</parameter> 
+		</operation>
+		
+		
+		
+		<!-- book borrow -->
+		
+		
+		
+		<operation name="borrowBook">
+			<parameter name="RESTMethod">PUT</parameter>
+			<parameter name="RESTLocation">request</parameter> 
+		</operation>
+		
+		<operation name="returnBook">
+			<parameter name="RESTMethod">PUT</parameter>
+			<parameter name="RESTLocation">request</parameter> 
+		</operation>
+		
+		<operation name="orderBook">
+			<parameter name="RESTMethod">PUT</parameter>
+			<parameter name="RESTLocation">request</parameter> 
+		</operation>
+		
+
+
+	</service>
+
+
+
+</serviceGroup>
